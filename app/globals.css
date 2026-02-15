@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@config "../tailwind.config.ts";
+
+@layer base {
+  body {
+    @apply bg-cream text-earth font-inter antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-playfair text-earth;
+  }
+
+  h4 {
+    @apply font-inter font-semibold text-earth;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-sage px-8 py-4 font-inter font-semibold text-white transition-all duration-300 hover:bg-sage-hover;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border-2 border-sage bg-transparent px-8 py-4 font-inter font-semibold text-sage transition-all duration-300 hover:bg-sage hover:text-white;
+  }
+
+  .btn-cta {
+    @apply inline-flex items-center justify-center rounded-xl bg-warm px-8 py-4 font-inter font-semibold text-white transition-all duration-300 hover:bg-warm-hover;
+  }
+
+  .section-padding {
+    @apply px-5 py-12 md:py-20;
+  }
+
+  .container-content {
+    @apply mx-auto w-full max-w-[1200px] px-5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
