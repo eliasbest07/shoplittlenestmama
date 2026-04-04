@@ -7,15 +7,16 @@ import type {
   SocialFeedItem,
   FooterColumn,
 } from "./types";
+import affiliateProducts from "@/data/affiliate-products.json";
 
 export const SITE_URL = "https://littlenestmama.com";
 export const SITE_NAME = "LittleNestMama";
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
+  { label: "Home", href: "/#hero" },
+  { label: "About", href: "/#about" },
   { label: "Blog", href: "/blog" },
-  { label: "Shop", href: "#products" },
+  { label: "Shop", href: "/products" },
 ];
 
 export const TRUST_COUNTERS: TrustCounter[] = [
@@ -58,81 +59,101 @@ export const TICKER_ITEMS = [
   "Award Winning",
 ];
 
-export const PRODUCTS: Product[] = [
-  {
-    id: "wipes",
-    image: "/images/generated/product-wipes.svg",
-    imageAlt: "Pack of baby wipes with clean packaging on cream background",
-    badge: "Nest Approved",
-    category: "Skin Care",
-    name: "99% Water Baby Wipes — Extra Large, Sensitive Skin",
-    rating: 4.6,
-    price: "$34.99",
-    review: "The only wipes my daughter isn't allergic to",
-    link: "#",
-  },
-  {
-    id: "bodysuits",
-    image: "/images/generated/product-bodysuits.svg",
-    imageAlt:
-      "Folded stack of organic cotton baby bodysuits in neutral colors",
-    badge: "Nest Approved",
-    category: "Clothing",
-    name: "Organic Cotton Bodysuits 5-Pack — Newborn Essentials",
-    rating: 4.8,
-    price: "$28.99",
-    review: "Softest fabric I've ever felt on baby clothes",
-    link: "#",
-  },
-  {
-    id: "food-maker",
-    image: "/images/generated/product-food-maker.svg",
-    imageAlt: "Baby food maker and steamer on kitchen counter with vegetables",
-    badge: "Nest Approved",
-    category: "Feeding",
-    name: "Baby Food Maker & Steamer — All-in-One Prep Station",
-    rating: 4.5,
-    price: "$69.99",
-    review: "Makes meal prep so easy, wish I had it sooner",
-    link: "#",
-  },
-  {
-    id: "noise-machine",
-    image: "/images/generated/product-noise-machine.svg",
-    imageAlt: "White noise machine shaped like an owl on nursery shelf",
-    badge: "Nest Approved",
-    category: "Sleep",
-    name: "White Noise Machine for Baby — 20 Soothing Sounds",
-    rating: 4.9,
-    price: "$39.99",
-    review: "Game changer for our baby's sleep routine",
-    link: "#",
-  },
-  {
-    id: "carrier",
-    image: "/images/generated/product-carrier.svg",
-    imageAlt: "Ergonomic baby carrier in earth-tone color",
-    badge: "Nest Approved",
-    category: "On the Go",
-    name: "Ergonomic Baby Carrier — Newborn to Toddler",
-    rating: 4.7,
-    price: "$89.99",
-    review: "My back thanks me every single day",
-    link: "#",
-  },
-  {
-    id: "plates",
-    image: "/images/generated/product-plates.svg",
-    imageAlt: "Set of silicone baby feeding plates and spoons in pastel colors",
-    badge: "Nest Approved",
-    category: "Feeding",
-    name: "Silicone Suction Plates & Spoons Set — BPA Free",
-    rating: 4.6,
-    price: "$19.99",
-    review: "Finally plates that actually stick to the high chair",
-    link: "#",
-  },
-];
+interface AffiliateProductSource {
+  asin: string;
+  title: string;
+  image: string;
+  descriptionBullets?: string[];
+  suggestion?: string;
+  affiliateLink: string;
+  status: string;
+}
+
+function normalizeSuggestionCategory(suggestion?: string) {
+  switch (suggestion) {
+    case "baby wipes":
+      return "Skin Care";
+    case "baby monitor":
+      return "Monitoring";
+    case "baby registry search":
+      return "Registry";
+    case "baby gate":
+      return "Safety";
+    case "baby essentials":
+    default:
+      return "Baby Essentials";
+  }
+}
+
+function cleanBullet(bullet: string) {
+  return bullet
+    .replace(/\s+/g, " ")
+    .replace(/\u201c|\u201d/g, '"')
+    .trim();
+}
+
+function buildExcerpt(product: AffiliateProductSource) {
+  const firstUsefulBullet = product.descriptionBullets
+    ?.map(cleanBullet)
+    .find((bullet) => bullet.length > 24 && bullet.length < 220);
+
+  return firstUsefulBullet ?? `Affiliate product from the ${product.suggestion ?? "baby"} catalog.`;
+}
+
+function buildHighlights(product: AffiliateProductSource) {
+  return (product.descriptionBullets ?? [])
+    .map(cleanBullet)
+    .filter((bullet) => bullet.length > 12 && bullet.length < 180)
+    .filter((bullet) => bullet.toLowerCase() !== "nullify")
+    .slice(0, 3);
+}
+
+function buildRelatedBlogSlugs(product: AffiliateProductSource) {
+  switch (product.suggestion) {
+    case "baby wipes":
+      return [
+        "guide-baby-sensitive-skin",
+        "water-based-vs-regular-baby-wipes",
+      ];
+    case "baby monitor":
+      return ["gentle-sleep-guide-baby-0-12-months"];
+    case "baby essentials":
+      return ["guide-baby-sensitive-skin"];
+    default:
+      return [];
+  }
+}
+
+export const PRODUCTS: Product[] = (affiliateProducts as AffiliateProductSource[])
+  .filter((product) => product.status === "done" && product.affiliateLink && product.image)
+  .map((product) => ({
+    id: product.asin,
+    image: product.image,
+    imageAlt: product.title,
+    badge: "Affiliate Pick",
+    category: normalizeSuggestionCategory(product.suggestion),
+    name: product.title,
+    link: product.affiliateLink,
+    excerpt: buildExcerpt(product),
+    highlights: buildHighlights(product),
+    relatedBlogSlugs: buildRelatedBlogSlugs(product),
+    relatedPins: [
+      {
+        title: `Pinterest material for ${product.asin}`,
+        href: "#",
+      },
+    ],
+  }));
+
+export const FEATURED_PRODUCTS = PRODUCTS.slice(0, 6);
+
+export function getAllProducts() {
+  return PRODUCTS;
+}
+
+export function getProductById(id: string) {
+  return PRODUCTS.find((product) => product.id === id) ?? null;
+}
 
 export const BLOG_POSTS_SUMMARY: BlogPostMeta[] = [
   {
@@ -310,18 +331,18 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: "Quick Links",
     links: [
-      { label: "Home", href: "#hero" },
-      { label: "About", href: "#about" },
+      { label: "Home", href: "/#hero" },
+      { label: "About", href: "/#about" },
       { label: "Blog", href: "/blog" },
-      { label: "Shop", href: "#products" },
-      { label: "Values", href: "#values" },
+      { label: "Shop", href: "/products" },
+      { label: "Values", href: "/#values" },
     ],
   },
   {
     title: "Resources",
     links: [
       { label: "Blog", href: "/blog" },
-      { label: "Shop", href: "#products" },
+      { label: "Products", href: "/products" },
       { label: "FAQ", href: "#" },
       { label: "Privacy Policy", href: "#" },
       { label: "Terms of Use", href: "#" },

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ProductCard from "@/components/ui/ProductCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/Icons";
-import { PRODUCTS } from "@/lib/constants";
+import { FEATURED_PRODUCTS } from "@/lib/constants";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function ProductCarousel() {
@@ -16,7 +16,7 @@ export default function ProductCarousel() {
   const [paused, setPaused] = useState(false);
 
   const visibleCount = isMobile ? 1 : isTablet ? 2 : 4;
-  const maxIndex = Math.max(0, PRODUCTS.length - visibleCount);
+  const maxIndex = Math.max(0, FEATURED_PRODUCTS.length - visibleCount);
 
   const next = useCallback(() => {
     setCurrent((c) => (c >= maxIndex ? 0 : c + 1));
@@ -41,7 +41,7 @@ export default function ProductCarousel() {
         <SectionHeader
           caption="mama's picks"
           title="Trusted Products for Your Little One"
-          subtitle="Every item is researched, tested, and approved by real moms."
+          subtitle="A featured selection from the affiliate catalog, with full detail pages and direct Amazon referral links."
         />
 
         <div
@@ -79,7 +79,7 @@ export default function ProductCarousel() {
                   gridTemplateColumns: `repeat(${visibleCount}, minmax(0, 1fr))`,
                 }}
               >
-                {PRODUCTS.slice(current, current + visibleCount).map(
+                {FEATURED_PRODUCTS.slice(current, current + visibleCount).map(
                   (product) => (
                     <ProductCard key={product.id} product={product} />
                   )
@@ -100,6 +100,12 @@ export default function ProductCarousel() {
                 aria-label={`Go to slide ${i + 1}`}
               />
             ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <a href="/products" className="btn-secondary">
+              Browse All Products
+            </a>
           </div>
         </div>
       </div>

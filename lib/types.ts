@@ -11,10 +11,17 @@ export interface Product {
   badge: string;
   category: string;
   name: string;
-  rating: number;
-  price: string;
-  review: string;
+  rating?: number;
+  price?: string;
+  review?: string;
   link: string;
+  excerpt?: string;
+  highlights?: string[];
+  relatedBlogSlugs?: string[];
+  relatedPins?: {
+    title: string;
+    href: string;
+  }[];
 }
 
 export interface BlogPostMeta {
