@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BlogCard from "@/components/ui/BlogCard";
 import CategoryPill from "@/components/ui/CategoryPill";
+import { ShoppingCartIcon } from "@/components/ui/Icons";
 import { SITE_NAME, SITE_URL, getAllProducts, getProductById } from "@/lib/constants";
 import { getAllPosts } from "@/lib/blog";
 
@@ -111,8 +112,9 @@ export default async function ProductDetailPage({ params }: Props) {
                     href={product.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-primary"
+                    className="btn-primary gap-2"
                   >
+                    <ShoppingCartIcon size={18} />
                     Shop affiliate link
                   </a>
                   <Link href="/#products" className="btn-secondary">
