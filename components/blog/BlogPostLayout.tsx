@@ -31,11 +31,11 @@ export default function BlogPostLayout({
             alt={meta.imageAlt}
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-deep-nest/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-deep-nest/55 via-deep-nest/15 to-transparent" />
         </div>
 
         {/* Content */}
-        <div className="container-content -mt-24 relative z-10">
+        <div className="container-content relative z-10 -mt-24">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -43,13 +43,13 @@ export default function BlogPostLayout({
               hidden: {},
               visible: { transition: { staggerChildren: 0.1 } },
             }}
-            className="mx-auto max-w-3xl rounded-2xl bg-white p-8 shadow-card md:p-12"
+            className="mx-auto max-w-3xl rounded-[2rem] border border-[#ead8c4] bg-parchment p-8 shadow-card md:p-12"
           >
             <motion.div variants={fadeUp}>
               <div className="mb-4 flex flex-wrap items-center gap-3">
                 <CategoryPill label={meta.category} />
-                <span className="text-sm text-earth/50">{meta.date}</span>
-                <span className="text-sm text-earth/50">{meta.readTime}</span>
+                <span className="text-sm text-mist">{meta.date}</span>
+                <span className="text-sm text-mist">{meta.readTime}</span>
               </div>
 
               <h1 className="font-playfair text-[32px] font-bold leading-tight text-earth md:text-[48px]">
@@ -74,7 +74,7 @@ export default function BlogPostLayout({
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group overflow-hidden rounded-2xl bg-white shadow-card transition-shadow hover:shadow-card-hover"
+                  className="group overflow-hidden rounded-[1.75rem] border border-[#ead8c4] bg-parchment shadow-card transition-shadow hover:shadow-card-hover"
                 >
                   <div className="aspect-[16/10] overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}

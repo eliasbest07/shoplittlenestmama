@@ -17,17 +17,15 @@ export default function Navbar() {
       <nav
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-cream shadow-navbar"
-            : "bg-transparent"
+            ? "bg-parchment/88 shadow-navbar backdrop-blur-md"
+            : "bg-parchment/55 backdrop-blur-sm"
         }`}
         aria-label="Main navigation"
       >
         <div className="container-content flex h-[60px] items-center justify-between md:h-[72px]">
           <Link
             href="/"
-            className={`font-playfair text-xl font-bold transition-colors md:text-2xl ${
-              scrolled ? "text-earth" : "text-cream"
-            }`}
+            className="font-playfair text-xl font-bold tracking-[0.01em] text-earth transition-colors md:text-2xl"
           >
             LittleNestMama
           </Link>
@@ -38,9 +36,7 @@ export default function Navbar() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-sage ${
-                    scrolled ? "text-earth" : "text-cream"
-                  }`}
+                  className="text-sm font-medium text-earth/78 transition-colors hover:text-sage"
                 >
                   {link.label}
                 </a>
@@ -48,9 +44,7 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-sage ${
-                    scrolled ? "text-earth" : "text-cream"
-                  }`}
+                  className="text-sm font-medium text-earth/78 transition-colors hover:text-sage"
                 >
                   {link.label}
                 </Link>
@@ -60,9 +54,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(true)}
-            className={`flex h-11 w-11 items-center justify-center md:hidden ${
-              scrolled ? "text-earth" : "text-cream"
-            }`}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-earth/10 bg-white/70 text-earth shadow-card md:hidden"
             aria-label="Open menu"
           >
             <HamburgerIcon />

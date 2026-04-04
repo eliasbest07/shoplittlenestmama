@@ -36,7 +36,7 @@ export default function ProductCarousel() {
   }, [isMobile, paused, next]);
 
   return (
-    <section id="products" className="section-padding bg-white">
+    <section id="products" className="section-padding">
       <div className="container-content">
         <SectionHeader
           caption="mama's picks"
@@ -45,21 +45,21 @@ export default function ProductCarousel() {
         />
 
         <div
-          className="relative"
+          className="panel-surface relative px-4 py-8 md:px-8"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
           {/* Navigation arrows */}
           <button
             onClick={prev}
-            className="absolute -left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-card transition-shadow hover:shadow-card-hover md:-left-5"
+            className="absolute -left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#ead8c4] bg-parchment shadow-card transition-shadow hover:shadow-card-hover md:-left-5"
             aria-label="Previous products"
           >
             <ChevronLeftIcon size={20} className="text-earth" />
           </button>
           <button
             onClick={next}
-            className="absolute -right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-card transition-shadow hover:shadow-card-hover md:-right-5"
+            className="absolute -right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#ead8c4] bg-parchment shadow-card transition-shadow hover:shadow-card-hover md:-right-5"
             aria-label="Next products"
           >
             <ChevronRightIcon size={20} className="text-earth" />
@@ -95,7 +95,7 @@ export default function ProductCarousel() {
                 key={i}
                 onClick={() => setCurrent(i)}
                 className={`h-2.5 w-2.5 rounded-full transition-colors ${
-                  i === current ? "bg-sage" : "bg-sage/30"
+                  i === current ? "bg-warm" : "bg-warm/25"
                 }`}
                 aria-label={`Go to slide ${i + 1}`}
               />

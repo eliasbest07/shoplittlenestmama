@@ -7,7 +7,7 @@ import { BLOG_POSTS_SUMMARY } from "@/lib/constants";
 
 export default function BlogGrid() {
   return (
-    <section id="blog" className="section-padding bg-cream">
+    <section id="blog" className="section-padding">
       <div className="container-content">
         <SectionHeader
           caption="the nest journal"

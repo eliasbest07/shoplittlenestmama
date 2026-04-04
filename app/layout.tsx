@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Caveat } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import { getWebsiteSchema, getOrganizationSchema } from "@/lib/structured-data";
 import "./globals.css";
 
@@ -14,13 +14,6 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   weight: ["300", "400", "500", "600"],
-  display: "swap",
-});
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-  weight: ["400"],
   display: "swap",
 });
 
@@ -55,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${caveat.variable}`}
+      className={`${playfair.variable} ${inter.variable}`}
     >
       <body>
         <script

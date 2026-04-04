@@ -30,7 +30,7 @@ export default function ValueCard({ card }: ValueCardProps) {
     <motion.div
       variants={fadeUp}
       whileHover={{ y: -6 }}
-      className="group flex flex-col items-center rounded-2xl border border-sage-soft bg-white p-8 text-center transition-all duration-300 hover:border-sage hover:shadow-card-hover md:p-10"
+      className="group flex flex-col items-center rounded-[1.75rem] border border-[#ead8c4] bg-parchment p-8 text-center transition-all duration-300 hover:border-sage/35 hover:shadow-card-hover md:p-10"
     >
       <div className="transition-transform duration-300 group-hover:rotate-[10deg]">
         {iconMap[card.icon]}
@@ -38,7 +38,7 @@ export default function ValueCard({ card }: ValueCardProps) {
       <h4 className="mt-4 font-inter text-lg font-semibold text-earth md:text-xl">
         {card.title}
       </h4>
-      <p className="mt-3 text-sm leading-relaxed text-earth/80">
+      <p className="mt-3 text-sm leading-relaxed text-mist">
         {card.description}
       </p>
     </motion.div>

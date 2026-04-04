@@ -8,7 +8,7 @@ import { FOOTER_COLUMNS } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="bg-deep-nest">
+    <footer className="mt-12 bg-deep-nest">
       <StaggerContainer className="container-content py-16" viewportAmount={0.1}>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {/* Brand column */}
@@ -28,7 +28,7 @@ export default function Footer() {
           {/* Link columns */}
           {FOOTER_COLUMNS.map((col) => (
             <motion.div key={col.title} variants={fadeIn}>
-              <h4 className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-cream">
+              <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-cream">
                 {col.title}
               </h4>
               <ul className="space-y-3">

@@ -17,7 +17,7 @@ export default function BlogCard({ post, featured }: BlogCardProps) {
       variants={fadeUp}
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
-      className={`group overflow-hidden rounded-2xl bg-white shadow-card transition-shadow hover:shadow-card-hover ${
+      className={`group overflow-hidden rounded-[1.75rem] border border-[#ead8c4] bg-parchment shadow-card transition-shadow hover:shadow-card-hover ${
         featured ? "md:row-span-2" : ""
       }`}
     >
@@ -40,14 +40,14 @@ export default function BlogCard({ post, featured }: BlogCardProps) {
               label={post.category}
               className="group-hover:bg-sage group-hover:text-white"
             />
-            <span className="text-xs text-earth/50">{post.date}</span>
+            <span className="text-xs text-mist">{post.date}</span>
           </div>
 
           <h3 className="mt-3 line-clamp-2 font-playfair text-xl font-semibold text-earth md:text-2xl">
             {post.title}
           </h3>
 
-          <p className="mt-2 line-clamp-2 text-sm text-earth/70">
+          <p className="mt-2 line-clamp-2 text-sm text-mist">
             {post.excerpt}
           </p>
 

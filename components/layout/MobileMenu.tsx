@@ -31,11 +31,11 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-deep-nest"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[radial-gradient(circle_at_top_right,rgba(244,229,225,0.18),transparent_30%),linear-gradient(180deg,#1f2333,#283452)]"
         >
           <button
             onClick={onClose}
-            className="absolute right-5 top-4 flex h-11 w-11 items-center justify-center text-cream"
+            className="absolute right-5 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-cream"
             aria-label="Close menu"
           >
             <CloseIcon />

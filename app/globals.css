@@ -3,8 +3,20 @@
 @config "../tailwind.config.ts";
 
 @layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 38%),
+      radial-gradient(circle at top right, rgba(244, 229, 225, 0.75), transparent 32%),
+      linear-gradient(180deg, #fbf4ea 0%, #f6ecde 100%);
+  }
+
   body {
-    @apply bg-cream text-earth font-inter antialiased;
+    @apply bg-transparent text-earth font-inter antialiased;
+    min-height: 100vh;
   }
 
   h1,
@@ -16,19 +28,27 @@
   h4 {
     @apply font-inter font-semibold text-earth;
   }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  ::selection {
+    @apply bg-sage/20 text-earth;
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-xl bg-sage px-8 py-4 font-inter font-semibold text-white transition-all duration-300 hover:bg-sage-hover;
+    @apply inline-flex items-center justify-center rounded-full bg-sage px-8 py-4 font-inter text-sm font-semibold tracking-[0.02em] text-white shadow-card transition-all duration-300 hover:bg-sage-hover hover:shadow-card-hover;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-xl border-2 border-sage bg-transparent px-8 py-4 font-inter font-semibold text-sage transition-all duration-300 hover:bg-sage hover:text-white;
+    @apply inline-flex items-center justify-center rounded-full border border-sage/25 bg-parchment px-8 py-4 font-inter text-sm font-semibold tracking-[0.02em] text-sage shadow-card transition-all duration-300 hover:border-sage hover:bg-sage hover:text-white hover:shadow-card-hover;
   }
 
   .btn-cta {
-    @apply inline-flex items-center justify-center rounded-xl bg-warm px-8 py-4 font-inter font-semibold text-white transition-all duration-300 hover:bg-warm-hover;
+    @apply inline-flex items-center justify-center rounded-full bg-warm px-8 py-4 font-inter text-sm font-semibold tracking-[0.02em] text-white shadow-card transition-all duration-300 hover:bg-warm-hover hover:shadow-card-hover;
   }
 
   .section-padding {
@@ -37,6 +57,18 @@
 
   .container-content {
     @apply mx-auto w-full max-w-[1200px] px-5;
+  }
+
+  .panel-surface {
+    @apply rounded-[2rem] border border-white/70 bg-parchment shadow-card;
+  }
+
+  .panel-muted {
+    @apply rounded-[2rem] border border-[#ead8c4] bg-white/70 shadow-card backdrop-blur-[2px];
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.24em] text-sage;
   }
 }
 

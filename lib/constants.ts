@@ -61,7 +61,7 @@ export const TICKER_ITEMS = [
 export const PRODUCTS: Product[] = [
   {
     id: "wipes",
-    image: "https://placehold.co/800x800/E8EDE5/5D4E37?text=Baby+Wipes",
+    image: "/images/generated/product-wipes.svg",
     imageAlt: "Pack of baby wipes with clean packaging on cream background",
     badge: "Nest Approved",
     category: "Skin Care",
@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "bodysuits",
-    image: "https://placehold.co/800x800/E8EDE5/5D4E37?text=Bodysuits",
+    image: "/images/generated/product-bodysuits.svg",
     imageAlt:
       "Folded stack of organic cotton baby bodysuits in neutral colors",
     badge: "Nest Approved",
@@ -86,7 +86,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "food-maker",
-    image: "https://placehold.co/800x800/E8EDE5/5D4E37?text=Food+Maker",
+    image: "/images/generated/product-food-maker.svg",
     imageAlt: "Baby food maker and steamer on kitchen counter with vegetables",
     badge: "Nest Approved",
     category: "Feeding",
@@ -98,8 +98,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "noise-machine",
-    image:
-      "https://placehold.co/800x800/E8EDE5/5D4E37?text=Noise+Machine",
+    image: "/images/generated/product-noise-machine.svg",
     imageAlt: "White noise machine shaped like an owl on nursery shelf",
     badge: "Nest Approved",
     category: "Sleep",
@@ -111,7 +110,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "carrier",
-    image: "https://placehold.co/800x800/E8EDE5/5D4E37?text=Baby+Carrier",
+    image: "/images/generated/product-carrier.svg",
     imageAlt: "Ergonomic baby carrier in earth-tone color",
     badge: "Nest Approved",
     category: "On the Go",
@@ -123,8 +122,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "plates",
-    image:
-      "https://placehold.co/800x800/E8EDE5/5D4E37?text=Silicone+Plates",
+    image: "/images/generated/product-plates.svg",
     imageAlt: "Set of silicone baby feeding plates and spoons in pastel colors",
     badge: "Nest Approved",
     category: "Feeding",
@@ -146,8 +144,7 @@ export const BLOG_POSTS_SUMMARY: BlogPostMeta[] = [
     category: "Baby Skin",
     date: "February 12, 2026",
     readTime: "9 min read",
-    image:
-      "https://placehold.co/1200x750/E8EDE5/5D4E37?text=Baby+Skin+Guide",
+    image: "/images/generated/blog-sensitive-skin.svg",
     imageAlt:
       "Close-up of baby's hand gently holding parent's finger in warm natural light",
     featured: true,
@@ -168,8 +165,7 @@ export const BLOG_POSTS_SUMMARY: BlogPostMeta[] = [
     category: "Product Guide",
     date: "February 13, 2026",
     readTime: "8 min read",
-    image:
-      "https://placehold.co/1200x750/E8EDE5/5D4E37?text=Wipes+Comparison",
+    image: "/images/generated/blog-wipes-comparison.svg",
     imageAlt:
       "Overhead view of multiple baby wipe brands arranged on a light marble surface",
     metaDescription:
@@ -189,8 +185,7 @@ export const BLOG_POSTS_SUMMARY: BlogPostMeta[] = [
     category: "Nutrition",
     date: "February 14, 2026",
     readTime: "10 min read",
-    image:
-      "https://placehold.co/1200x750/E8EDE5/5D4E37?text=Baby+Led+Weaning",
+    image: "/images/generated/blog-blw-guide.svg",
     imageAlt:
       "Baby sitting in high chair with colorful food on tray",
     metaDescription:
@@ -210,8 +205,7 @@ export const BLOG_POSTS_SUMMARY: BlogPostMeta[] = [
     category: "Clothing",
     date: "February 14, 2026",
     readTime: "7 min read",
-    image:
-      "https://placehold.co/1200x750/E8EDE5/5D4E37?text=Safe+Fabrics",
+    image: "/images/generated/blog-safe-fabrics.svg",
     imageAlt:
       "Organized nursery closet with neatly folded baby clothes in neutral tones",
     metaDescription:
@@ -231,8 +225,7 @@ export const BLOG_POSTS_SUMMARY: BlogPostMeta[] = [
     category: "Sleep",
     date: "February 15, 2026",
     readTime: "11 min read",
-    image:
-      "https://placehold.co/1200x750/E8EDE5/5D4E37?text=Sleep+Guide",
+    image: "/images/generated/blog-sleep-guide.svg",
     imageAlt:
       "Calm nursery at twilight with warm nightlight glowing softly",
     featured: true,
@@ -287,39 +280,28 @@ export const VALUE_CARDS: ValueCard[] = [
 
 export const SOCIAL_FEED: SocialFeedItem[] = [
   {
-    image:
-      "https://placehold.co/400x400/E8EDE5/5D4E37?text=Nest+Approved",
-    alt: "Baby wipes package with Nest Approved badge",
+    image: "/nestmama/unnamed.jpg",
+    alt: "Sunlit nursery with wooden crib, framed botanical art, and neutral textiles",
     link: "#",
   },
   {
-    image:
-      "https://placehold.co/400x400/FFF8F0/5D4E37?text=Baby+Outfit",
-    alt: "Flat lay of baby outfit on cream blanket",
+    image: "/nestmama/2.jpg",
+    alt: "Nursery shelves styled with muslin cloths, a baby bottle, and wooden toys",
     link: "#",
   },
   {
-    image:
-      "https://placehold.co/400x400/A8B5A0/FFFFFF?text=5+Ingredients",
-    alt: "Infographic: 5 Ingredients to Avoid in Baby Wipes",
+    image: "/nestmama/3.jpg",
+    alt: "Curated nursery corner with soft lighting and natural wood accents",
     link: "#",
   },
   {
-    image:
-      "https://placehold.co/400x400/E8EDE5/5D4E37?text=Nursery+Corner",
-    alt: "Lifestyle shot of nursery corner with organized shelf",
+    image: "/nestmama/4.jpg",
+    alt: "Neutral baby essentials arranged with textured fabrics and warm tones",
     link: "#",
   },
   {
-    image:
-      "https://placehold.co/400x400/A8B5A0/FFF8F0?text=Every+Small+Choice",
-    alt: "Quote: Every small choice is a big act of love",
-    link: "#",
-  },
-  {
-    image:
-      "https://placehold.co/400x400/FFF8F0/5D4E37?text=Wipes+Compare",
-    alt: "Comparison: Water Wipes vs Regular Wipes",
+    image: "/nestmama/5.jpg",
+    alt: "Soft nursery styling details with cozy blankets and minimalist decor",
     link: "#",
   },
 ];

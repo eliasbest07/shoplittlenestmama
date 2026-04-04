@@ -25,9 +25,7 @@ export default function SectionHeader({
     >
       <motion.p
         variants={fadeUp}
-        className={`mb-3 font-caveat text-2xl ${
-          light ? "text-warm" : "text-warm"
-        }`}
+        className="eyebrow mb-3"
       >
         {caption}
       </motion.p>
@@ -43,7 +41,7 @@ export default function SectionHeader({
         <motion.p
           variants={fadeUp}
           className={`mx-auto mt-4 max-w-2xl text-base md:text-lg ${
-            light ? "text-cream/80" : "text-earth/70"
+            light ? "text-cream/80" : "text-mist"
           }`}
         >
           {subtitle}

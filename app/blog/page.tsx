@@ -18,7 +18,7 @@ export default function BlogListingPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-cream pt-[72px]">
+      <main className="pt-[72px]">
         <section className="section-padding">
           <div className="container-content">
             <SectionHeader

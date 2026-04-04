@@ -7,7 +7,7 @@ import { VALUE_CARDS } from "@/lib/constants";
 
 export default function Values() {
   return (
-    <section id="values" className="section-padding bg-sage-soft">
+    <section id="values" className="section-padding">
       <div className="container-content">
         <SectionHeader
           caption="why trust us"

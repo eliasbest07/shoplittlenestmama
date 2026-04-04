@@ -10,20 +10,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: "#FFF8F0",
+        cream: "#F8F0E4",
+        parchment: "#FFF9F1",
         sage: {
-          DEFAULT: "#A8B5A0",
-          soft: "#E8EDE5",
-          hover: "#8FA087",
+          DEFAULT: "#1F7A75",
+          soft: "#E6F2EF",
+          hover: "#176763",
         },
         warm: {
-          DEFAULT: "#D4A574",
-          hover: "#C09460",
-          light: "#F0E6D8",
+          DEFAULT: "#C86017",
+          hover: "#AA5012",
+          light: "#F1DED0",
         },
-        earth: "#5D4E37",
-        "deep-nest": "#3D3228",
-        blush: "#FFE4E6",
+        earth: "#283452",
+        "deep-nest": "#1F2333",
+        blush: "#F4E5E1",
+        mist: "#7E7A78",
         success: "#7BAF6B",
       },
       fontFamily: {
@@ -32,9 +34,9 @@ const config: Config = {
         caveat: ["var(--font-caveat)", "cursive"],
       },
       boxShadow: {
-        card: "0 4px 20px rgba(93, 78, 55, 0.08)",
-        "card-hover": "0 8px 30px rgba(93, 78, 55, 0.15)",
-        navbar: "0 2px 10px rgba(61, 50, 40, 0.1)",
+        card: "0 18px 45px rgba(110, 84, 54, 0.12)",
+        "card-hover": "0 28px 60px rgba(110, 84, 54, 0.18)",
+        navbar: "0 14px 40px rgba(53, 39, 28, 0.12)",
       },
       keyframes: {
         marquee: {

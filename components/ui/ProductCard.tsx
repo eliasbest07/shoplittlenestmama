@@ -14,7 +14,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <motion.div
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
-      className="flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-card transition-shadow hover:shadow-card-hover"
+      className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[#ead8c4] bg-parchment shadow-card transition-shadow hover:shadow-card-hover"
     >
       {/* Image */}
       <div className="relative aspect-square overflow-hidden">
@@ -25,7 +25,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="h-full w-full object-cover transition-transform duration-400 hover:scale-105"
           loading="lazy"
         />
-        <span className="absolute right-3 top-3 rounded-full bg-sage px-3 py-1 text-xs font-medium text-white">
+        <span className="absolute right-3 top-3 rounded-full bg-sage px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-white">
           {product.badge}
         </span>
       </div>
@@ -38,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </h4>
         <StarRating rating={product.rating} className="mt-2" />
         <p className="mt-2 text-lg font-bold text-earth">{product.price}</p>
-        <p className="mt-1 text-sm italic text-earth/60">
+        <p className="mt-1 text-sm italic text-mist">
           &ldquo;{product.review}&rdquo;
         </p>
         <a

@@ -17,18 +17,18 @@ export default function StarRating({ rating, className }: StarRatingProps) {
           viewBox="0 0 24 24"
           fill={
             i < fullStars
-              ? "#D4A574"
+              ? "#C86017"
               : i === fullStars && hasHalf
                 ? "url(#half)"
                 : "none"
           }
-          stroke="#D4A574"
+          stroke="#C86017"
           strokeWidth="1.5"
         >
           {i === fullStars && hasHalf && (
             <defs>
               <linearGradient id="half">
-                <stop offset="50%" stopColor="#D4A574" />
+                <stop offset="50%" stopColor="#C86017" />
                 <stop offset="50%" stopColor="transparent" />
               </linearGradient>
             </defs>
@@ -36,7 +36,7 @@ export default function StarRating({ rating, className }: StarRatingProps) {
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
       ))}
-      <span className="ml-1 text-sm text-earth/70">{rating}</span>
+      <span className="ml-1 text-sm text-mist">{rating}</span>
     </div>
   );
 }
