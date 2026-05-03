@@ -23,6 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) return {};
 
+  const productImage = product.image.startsWith("http")
+    ? product.image
+    : `${SITE_URL}${product.image}`;
+
   return {
     title: product.name,
     description: product.excerpt ?? `Product details for ${product.name}`,
@@ -30,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: product.name,
       description: product.excerpt ?? `Product details for ${product.name}`,
       type: "article",
-      images: [{ url: product.image }],
+      images: [{ url: productImage }],
     },
   };
 }
@@ -51,7 +55,9 @@ export default async function ProductDetailPage({ params }: Props) {
     "@type": "Product",
     name: product.name,
     description: product.excerpt,
-    image: product.image,
+    image: product.image.startsWith("http")
+      ? product.image
+      : `${SITE_URL}${product.image}`,
     category: product.category,
     brand: SITE_NAME,
     url: `${SITE_URL}/products/${product.id}`,
@@ -145,13 +151,26 @@ export default async function ProductDetailPage({ params }: Props) {
                   <div className="mt-4 grid gap-4 sm:grid-cols-2">
                     {product.relatedPins.map((pin) => (
                       <a
-                        key={pin.title}
+                        key={pin.href}
                         href={pin.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="rounded-[1.5rem] border border-[#ead8c4] bg-white/70 p-5 text-sm text-earth shadow-card transition-shadow hover:shadow-card-hover"
                       >
-                        {pin.title}
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sage">
+                          Pinterest pin
+                        </p>
+                        <h4 className="mt-2 text-base font-semibold leading-snug text-earth">
+                          {pin.title}
+                        </h4>
+                        {pin.note ? (
+                          <p className="mt-2 leading-relaxed text-mist">
+                            {pin.note}
+                          </p>
+                        ) : null}
+                        <span className="mt-4 inline-flex text-xs font-semibold uppercase tracking-[0.16em] text-earth">
+                          Open pin
+                        </span>
                       </a>
                     ))}
                   </div>

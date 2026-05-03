@@ -5,10 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ProductCard from "@/components/ui/ProductCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/Icons";
-import { FEATURED_PRODUCTS } from "@/lib/constants";
+import type { Product } from "@/lib/types";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
-export default function ProductCarousel() {
+interface ProductCarouselProps {
+  products: Product[];
+}
+
+export default function ProductCarousel({ products }: ProductCarouselProps) {
   const [current, setCurrent] = useState(0);
   const isMobile = useMediaQuery("(max-width: 767px)");
   const isTablet = useMediaQuery("(max-width: 1023px)");
@@ -16,7 +20,7 @@ export default function ProductCarousel() {
   const [paused, setPaused] = useState(false);
 
   const visibleCount = isMobile ? 1 : isTablet ? 2 : 4;
-  const maxIndex = Math.max(0, FEATURED_PRODUCTS.length - visibleCount);
+  const maxIndex = Math.max(0, products.length - visibleCount);
 
   const next = useCallback(() => {
     setCurrent((c) => (c >= maxIndex ? 0 : c + 1));
@@ -79,7 +83,7 @@ export default function ProductCarousel() {
                   gridTemplateColumns: `repeat(${visibleCount}, minmax(0, 1fr))`,
                 }}
               >
-                {FEATURED_PRODUCTS.slice(current, current + visibleCount).map(
+                {products.slice(current, current + visibleCount).map(
                   (product) => (
                     <ProductCard key={product.id} product={product} />
                   )

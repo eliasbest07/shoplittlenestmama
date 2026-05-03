@@ -21,6 +21,7 @@ export interface Product {
   relatedPins?: {
     title: string;
     href: string;
+    note?: string;
   }[];
 }
 

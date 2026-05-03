@@ -38,6 +38,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "LittleNestMama",
   },
+  verification: {
+    other: {
+      "p:domain_verify": "9e5fab18461128d3d281c844ca82e68c",
+    },
+  },
 };
 
 export default function RootLayout({

@@ -63,12 +63,19 @@ interface AffiliateProductSource {
   asin: string;
   title: string;
   image: string;
+  imageLocal?: string;
   descriptionBullets?: string[];
   suggestion?: string;
   affiliateLink: string;
   status: string;
+  relatedPins?: PinterestPinSource[];
 }
 
+interface PinterestPinSource {
+  title: string;
+  href: string;
+  note?: string;
+}
 function normalizeSuggestionCategory(suggestion?: string) {
   switch (suggestion) {
     case "baby wipes":
@@ -124,11 +131,43 @@ function buildRelatedBlogSlugs(product: AffiliateProductSource) {
   }
 }
 
+function buildFallbackPinCopy(product: AffiliateProductSource) {
+  const highlights = buildHighlights(product);
+  const baseTitle = product.title.split(",")[0]?.trim() || product.title;
+
+  return [
+    {
+      title: `${baseTitle} Overview`,
+      href: "#",
+      note: highlights[0] ?? `Supporting Pinterest content for ${product.asin}.`,
+    },
+  ];
+}
+
+function buildRelatedPins(product: AffiliateProductSource) {
+  if (product.relatedPins && product.relatedPins.length > 0) {
+    return product.relatedPins;
+  }
+
+  return buildFallbackPinCopy(product);
+}
+
+function resolveProductImage(product: AffiliateProductSource) {
+  if (product.imageLocal) {
+    // imageLocal includes "images/" prefix (e.g. "images/baby-xxx.jpg")
+    // IMAGES_ROOT in the API route already points to <cwd>/images, so strip it
+    const filename = product.imageLocal.replace(/^images\//, "");
+    return `/api/product-images/${filename}`;
+  }
+
+  return product.image;
+}
+
 export const PRODUCTS: Product[] = (affiliateProducts as AffiliateProductSource[])
   .filter((product) => product.status === "done" && product.affiliateLink && product.image)
   .map((product) => ({
     id: product.asin,
-    image: product.image,
+    image: resolveProductImage(product),
     imageAlt: product.title,
     badge: "Affiliate Pick",
     category: normalizeSuggestionCategory(product.suggestion),
@@ -137,18 +176,17 @@ export const PRODUCTS: Product[] = (affiliateProducts as AffiliateProductSource[
     excerpt: buildExcerpt(product),
     highlights: buildHighlights(product),
     relatedBlogSlugs: buildRelatedBlogSlugs(product),
-    relatedPins: [
-      {
-        title: `Pinterest material for ${product.asin}`,
-        href: "#",
-      },
-    ],
+    relatedPins: buildRelatedPins(product),
   }));
 
 export const FEATURED_PRODUCTS = PRODUCTS.slice(0, 6);
 
 export function getAllProducts() {
   return PRODUCTS;
+}
+
+export function getFeaturedProducts() {
+  return FEATURED_PRODUCTS;
 }
 
 export function getProductById(id: string) {
