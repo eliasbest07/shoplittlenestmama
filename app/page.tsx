@@ -9,7 +9,6 @@ import Newsletter from "@/components/sections/Newsletter";
 import SocialFeed from "@/components/sections/SocialFeed";
 import Footer from "@/components/layout/Footer";
 import { getAllProducts } from "@/lib/constants";
-import AdSenseFlashPanel from "@/components/ads/AdSenseFlashPanel";
 import AdSenseScript from "@/components/ads/AdSenseScript";
 import AdUnit from "@/components/ads/AdUnit";
 import ProductCard from "@/components/ui/ProductCard";
@@ -26,7 +25,6 @@ export default function HomePage() {
       <main>
         <Hero />
         <TrustBar />
-        <AdSenseFlashPanel />
         <About />
         <section className="px-5 pb-4 md:pb-8">
           <div className="container-content">

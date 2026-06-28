@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Fragment } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import AdSenseFlashPanel from "@/components/ads/AdSenseFlashPanel";
 import AdSenseScript from "@/components/ads/AdSenseScript";
 import AdUnit from "@/components/ads/AdUnit";
 import ProductCard from "@/components/ui/ProductCard";
@@ -33,7 +32,6 @@ export default function ProductsListingPage() {
             />
 
             <AdUnit placement="products-top" className="mb-8" />
-            <AdSenseFlashPanel className="px-0 pt-0" />
 
             <StaggerContainer className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
               {products.map((product, index) => (
