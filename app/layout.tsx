@@ -41,6 +41,7 @@ export const metadata: Metadata = {
   verification: {
     other: {
       "p:domain_verify": "9e5fab18461128d3d281c844ca82e68c",
+      "google-adsense-account": "ca-pub-7506182169131280",
     },
   },
 };
