@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AdSenseScript from "@/components/ads/AdSenseScript";
 import BlogCard from "@/components/ui/BlogCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 import StaggerContainer from "@/components/animations/StaggerContainer";
@@ -17,6 +18,7 @@ export default function BlogListingPage() {
 
   return (
     <>
+      <AdSenseScript />
       <Navbar />
       <main className="pt-[72px]">
         <section className="section-padding">

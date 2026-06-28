@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AdSenseScript from "@/components/ads/AdSenseScript";
+import AdUnit from "@/components/ads/AdUnit";
 import BlogCard from "@/components/ui/BlogCard";
 import CategoryPill from "@/components/ui/CategoryPill";
 import { ShoppingCartIcon } from "@/components/ui/Icons";
@@ -65,6 +67,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <>
+      <AdSenseScript />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -194,6 +197,12 @@ export default async function ProductDetailPage({ params }: Props) {
                   No blog posts are linked yet. Add slugs in `relatedBlogSlugs` for this product when you want supporting articles to appear here.
                 </p>
               )}
+
+              <AdUnit
+                placement="product-detail"
+                variant="sidebar"
+                className="mt-8"
+              />
             </div>
           </div>
         </section>

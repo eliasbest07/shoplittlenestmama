@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "@/lib/mdx-remote";
 import { getAllSlugs, getPostBySlug, getAllPosts } from "@/lib/blog";
 import BlogPostLayout from "@/components/blog/BlogPostLayout";
+import AdSenseScript from "@/components/ads/AdSenseScript";
 import { SITE_URL } from "@/lib/constants";
 
 interface Props {
@@ -63,6 +64,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
+      <AdSenseScript />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
