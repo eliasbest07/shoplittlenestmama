@@ -7,6 +7,7 @@ export interface NavLink {
 export interface Product {
   id: string;
   image: string;
+  originalImage?: string;
   imageAlt: string;
   badge: string;
   category: string;

@@ -152,7 +152,43 @@ function buildRelatedPins(product: AffiliateProductSource) {
   return buildFallbackPinCopy(product);
 }
 
-function resolveProductImage(product: AffiliateProductSource) {
+const generatedCoverAsins = new Set([
+    "B073XVXQ6R", "B001PYQWXY", "B08V8RWP3W", "B0DPR78B37", "B0CLGCN5ZS",
+    "B07N1JP56L", "B08GJJ4JWG", "B0BW2X99SC", "B0FF39ZB6V", "B0BXBBDR3R",
+    "1648766595", "B07MBW6JNL", "B07SVHLGV8", "B0DR55SVHB", "B0C6Y89H47",
+    "B0CWLHKQNT", "B07YXN58SK", "0593523571", "B0CYZNBB14", "B0BJ13K7FR",
+    "B0D65F9NS7", "B0DRG5NWJG", "B0CF1WF832", "B0DSP23G39", "B07MPCCDM7",
+    "B0F5WXJJQD", "B0CJCLHSXV", "B0GF6R7BRG", "B0GFDQGWLV", "B0BVXQQNBB",
+    "B0746RGRL3", "B08QRT84WJ", "B0DSPHJLC9", "B09LRK8WLJ", "B0DHYH23PK",
+    "B07Q9CTTLT", "B0D6LKSBM1", "B0D4B466R6", "B0B45XD7Q4", "B0FH6Q7T6B",
+    "B0CZNY9QK6", "B00M0DWQYI", "B0CGWJ87QM", "B0DT4D8C8J", "B0F1T9762D",
+    "1680524232", "B0FM7CXSDS", "B07H53W5WP", "B0872YT3KD", "B0FTSL4FXJ",
+    "B0DQNPSCD3", "B075G6XMSF", "B0C9JRM5WX", "0544938097", "B0G48HDC44",
+    "B07HPFTV69", "B079V67BFW", "B001OC5UNA", "B08QRL9YMY", "B07H1NLW4K",
+    "B0FWKDRPL2", "B07KGL6L56", "B095L52T3Z", "B0D4LVK289", "1728223431",
+    "B000G6BZJI", "B004HM368U", "0694014222", "B0914D1RQL", "B095XD61JX",
+    "B0DMW9GTGT", "B0B66QNW35", "B0FQHGWDRN", "B0G5Z5MS36", "B0009STDJW",
+    "B0866S3D82", "B01EIG6A4Q", "B001OC5UMQ", "B07WCV632L", "B07H53Y33R",
+    "B00AO084CW", "B00H8MSBY0", "B0D1R5S52V", "B0F8T5231B", "B0F49G8KYV",
+    "B07FSLSL1K", "B0CKW4B982", "B0CD42KQ3K", "B0CGRB23YM", "B08GFCX964",
+    "B0B3SCY69X", "B0CYCDTZ6G", "B0FGJ49MYP", "B0779Z53SD", "B0B21ZM7LJ",
+    "B01HG7E5R8", "B0BZYJWCMS", "B0BTDRL37K", "B0DCTCB7K8", "B07DGPGR56",
+    "0451469828", "B0CDQ2KVJD", "B0BN2ZH72J", "B0B6CPQWW5", "B0BJ6YM9JX",
+    "B0CF4QLG92", "B0DZJ49F6M", "B0002JETOM", "B08PDPK1JS", "B00JEV5UI8",
+    "B08X1YQ2N9", "B0G5SWL84L", "B08QRKY3NJ", "B09GM8JZM9", "B0FFGYZZBT",
+    "B0FGHLKZG5", "B0FDSC6XL6", "B09YKWCPSP", "B0DRVMWT9S", "B0GD8VN5WX",
+    "B07H4V7M4C", "B09F36M2T5", "B0065ADP4C", "B0BLP58XZD", "B0D78PWJ4W",
+    "B0BYDKKLWC", "B07MB5RY9N", "B0FVDR1XNC", "B0DT6ZPT5X", "B0DP2C2VWB",
+    "B0CZDYF95R", "B0DQPGBNDP", "B0DKHCWJ5G", "0593750179", "B076KQHGC9",
+    "B08SZLRC67", "B0CNSCVGPH", "B0CDQ1XH6W", "B0CL9SJ88Z", "B000A796WG",
+    "B07SCL613T", "1680524771", "B00BBXEJ1Q", "B0DHZDZ1LQ", "B0F891S3KK",
+    "B0GC95XM1H", "B0DSMHJ2FF", "1536210633", "B0B1S7BTJF", "B09MWJDC6C",
+    "B0FPCY9C1H", "B07XMFVN95", "B0D2W5VW9V", "B098X8WS7Y", "B0DX78K8ZZ",
+    "B0B316NPZ6", "B0CJXC7YTC", "B01BTUNHSQ", "B0CRYTJGZF", "B0DT25FYJZ",
+    "B01NASH63G",
+]);
+
+function resolveOriginalProductImage(product: AffiliateProductSource) {
   if (product.imageLocal) {
     // imageLocal includes "images/" prefix (e.g. "images/baby-xxx.jpg")
     // IMAGES_ROOT in the API route already points to <cwd>/images, so strip it
@@ -163,11 +199,20 @@ function resolveProductImage(product: AffiliateProductSource) {
   return product.image;
 }
 
+function resolveProductImage(product: AffiliateProductSource) {
+  if (generatedCoverAsins.has(product.asin)) {
+    return `/api/product-images/product-covers/${product.asin}.jpg`;
+  }
+
+  return resolveOriginalProductImage(product);
+}
+
 export const PRODUCTS: Product[] = (affiliateProducts as AffiliateProductSource[])
   .filter((product) => product.status === "done" && product.affiliateLink && product.image)
   .map((product) => ({
     id: product.asin,
     image: resolveProductImage(product),
+    originalImage: resolveOriginalProductImage(product),
     imageAlt: product.title,
     badge: "Affiliate Pick",
     category: normalizeSuggestionCategory(product.suggestion),

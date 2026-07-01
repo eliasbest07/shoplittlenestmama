@@ -7,6 +7,7 @@ import AdSenseScript from "@/components/ads/AdSenseScript";
 import AdUnit from "@/components/ads/AdUnit";
 import BlogCard from "@/components/ui/BlogCard";
 import CategoryPill from "@/components/ui/CategoryPill";
+import ProductImageGallery from "@/components/ui/ProductImageGallery";
 import { ShoppingCartIcon } from "@/components/ui/Icons";
 import { SITE_NAME, SITE_URL, getAllProducts, getProductById } from "@/lib/constants";
 import { getAllPosts } from "@/lib/blog";
@@ -57,9 +58,9 @@ export default async function ProductDetailPage({ params }: Props) {
     "@type": "Product",
     name: product.name,
     description: product.excerpt,
-    image: product.image.startsWith("http")
-      ? product.image
-      : `${SITE_URL}${product.image}`,
+    image: [product.image, product.originalImage]
+      .filter((image): image is string => Boolean(image))
+      .map((image) => (image.startsWith("http") ? image : `${SITE_URL}${image}`)),
     category: product.category,
     brand: SITE_NAME,
     url: `${SITE_URL}/products/${product.id}`,
@@ -77,16 +78,25 @@ export default async function ProductDetailPage({ params }: Props) {
         <section className="section-padding">
           <div className="container-content">
             <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-              <div className="panel-surface overflow-hidden p-4">
-                <div className="relative aspect-square overflow-hidden rounded-[1.75rem]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={product.image}
-                    alt={product.imageAlt}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
+              <ProductImageGallery
+                images={[
+                  {
+                    src: product.image,
+                    alt: product.imageAlt,
+                    fit: "cover",
+                  },
+                  ...(product.originalImage && product.originalImage !== product.image
+                    ? [
+                        {
+                          src: product.originalImage,
+                          alt: `${product.imageAlt} product image`,
+                          label: "Product image",
+                          fit: "contain" as const,
+                        },
+                      ]
+                    : []),
+                ]}
+              />
 
               <div className="panel-surface flex flex-col justify-center p-8 md:p-10">
                 <CategoryPill label={product.category} />
